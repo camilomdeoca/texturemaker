@@ -1,0 +1,53 @@
+@use '../../styles' as *;
+
+.card {
+  background: $bg-color;
+  display: flex;
+  flex-direction: column;
+  width: 8rem;
+  //width: fit-content;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  box-shadow: 0.3rem 0.3rem 0.3rem 0 $shadow-color;
+}
+
+.card-title {
+  text-align: center;
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+}
+
+.card-control {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-control-label {
+  font-size: small;
+  margin: 0 0.15rem;
+}
+
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 0.2rem;
+  background: $bg-hole-color;
+}
+
+/* For WebKit-based browsers */
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  width: 0.5rem;
+  height: 0.5rem;
+  border: 0.1rem solid $border-color;
+  background: $bg-color;
+}
+
+input[type=range]::-webkit-slider-runnable-track  {
+  -webkit-appearance: none;
+  background: transparent;
+}
+
+.card-texture-preview {
+  margin: 1rem 0 0 0;
+}

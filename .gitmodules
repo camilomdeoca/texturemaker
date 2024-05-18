@@ -1,0 +1,6 @@
+[submodule "lib/noises-library"]
+	path = lib/noises-library
+	url = https://github.com/camilomdeoca/noises-library.git
+[submodule "lib/vectors-typescript"]
+	path = lib/vectors-typescript
+	url = https://github.com/camilomdeoca/vectors-typescript.git

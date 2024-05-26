@@ -1,0 +1,5 @@
+<svg class="cards-connection-arrow" style="top: {{position.y}}px; left: {{position.x}}px; width: {{size.x}}px; height: {{size.y}}px;">
+  <path class="cards-connection-arrow-path" attr.d="
+    M {{goesRight ? 0 : size.x}} {{goesDown ? 0 : size.y}}
+    C {{size.x / 2}} {{goesDown ? 0 : size.y}} {{size.x / 2}} {{goesDown ? size.y : 0}} {{goesRight ? size.x : 0}} {{goesDown ? size.y : 0}}"></path>
+</svg>

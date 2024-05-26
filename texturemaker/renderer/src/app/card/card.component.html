@@ -1,0 +1,31 @@
+<div class="card" cdkDrag (cdkDragMoved)="onDragMove($event)">
+  <h2 class="card-title" cdkDragHandle>{{cardName}}</h2>
+  <div class="card-columns">
+    <div class="card-inputs">
+      @for (inputName of node.inputs.keys(); track $index) {
+        <div
+          #input
+          class="card-input"
+          [appCardInput]="inputName"
+          (mouseup)="onMouseUpOnInput(inputName)"></div>
+      }
+    </div>
+    <div class="expand">
+      @switch (cardType) {
+        @case (CardType.PerlinNoise) {
+          <app-perlin-noise-control [node]="node" [changeCallback]="onChange"></app-perlin-noise-control>
+        }
+        @case (CardType.WorleyNoise) {
+          <app-worley-noise-control [node]="node" [changeCallback]="onChange"></app-worley-noise-control>
+        }
+        @case (CardType.ColorCorrection) {
+          <app-color-correction-control [node]="node" [changeCallback]="onChange"></app-color-correction-control>
+        }
+      }
+      <canvas class="card-texture-preview" #texturePreviewCanvas [width]="textureSize" [height]="textureSize"></canvas>
+    </div>
+    <div class="card-outputs">
+      <div class="card-output" appCardOutput="output" (mousedown)="onMouseDownOnOutput('output')"></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="card-controls">
+  <div class="card-control">
+    <label class="card-control-label" for="color-correction-contrast">Contrast</label>
+    <div class="card-control-input-array">
+      <input class="card-control-input expand" type="number" min="0" max="5" step="0.1" id="color-correction-contrast"
+        [(ngModel)]="node.contrast" (change)="onChange()">
+    </div>
+  </div>
+  <div class="card-control">
+    <label class="card-control-label" for="color-correction-brightness">Brightness</label>
+    <div class="card-control-input-array">
+      <input class="card-control-input expand" type="number" min="0" max="5" step="0.1" id="color-correction-brightness"
+        [(ngModel)]="node.brightness" (change)="onChange()">
+    </div>
+  </div>
+  <div class="card-control">
+    <label class="card-control-label" for="color-correction-saturation">Saturation</label>
+    <div class="card-control-input-array">
+      <input class="card-control-input expand" type="number" min="0" max="5" step="0.1" id="color-correction-saturation"
+        [(ngModel)]="node.saturation" (change)="onChange()">
+    </div>
+  </div>
+  <div class="card-control">
+    <label class="card-control-label" for="color-correction-gamma">Gamma</label>
+    <div class="card-control-input-array">
+      <input class="card-control-input expand" type="number" min="0" max="5" step="0.1" id="color-correction-gamma"
+        [(ngModel)]="node.gamma" (change)="onChange()">
+    </div>
+  </div>
+</div>

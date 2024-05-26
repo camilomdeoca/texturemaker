@@ -10,27 +10,27 @@
           "style": "scss"
         }
       },
-      "root": "",
-      "sourceRoot": "src",
+      "root": "texturemaker/renderer",
+      "sourceRoot": "texturemaker/renderer/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/texturemaker",
-            "index": "src/index.html",
-            "browser": "src/main.ts",
+            "index": "texturemaker/renderer/src/index.html",
+            "browser": "texturemaker/renderer/src/main.ts",
             "polyfills": [
               "zone.js"
             ],
-            "tsConfig": "tsconfig.app.json",
+            "tsConfig": "texturemaker/renderer/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "texturemaker/renderer/src/favicon.ico",
+              "texturemaker/renderer/src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "texturemaker/renderer/src/styles.scss"
             ],
             "scripts": []
           },
@@ -83,14 +83,14 @@
               "zone.js",
               "zone.js/testing"
             ],
-            "tsConfig": "tsconfig.spec.json",
+            "tsConfig": "texturemaker/renderer/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "texturemaker/renderer/src/favicon.ico",
+              "texturemaker/renderer/src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "texturemaker/renderer/src/styles.scss"
             ],
             "scripts": []
           }

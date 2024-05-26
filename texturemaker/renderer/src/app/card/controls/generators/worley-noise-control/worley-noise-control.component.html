@@ -1,0 +1,39 @@
+<div class="card-controls">
+  <div class="card-control">
+    <label class="card-control-label" for="worley-noise-seed">Seed</label>
+    <div class="card-control-input-array">
+      <input class="card-control-input expand" type="text" id="worley-noise-seed" [(ngModel)]="node.seed"
+        (change)="onChange()">
+    </div>
+  </div>
+  <div class="card-control">
+    <label class="card-control-label" for="worley-noise-number-of-points">Number of Points</label>
+    <div class="card-control-input-array">
+      <input class="card-control-input expand" type="number" id="worley-noise-number-of-points"
+        [(ngModel)]="node.numberOfPoints" (change)="onChange()" [min]="WorleyNoiseControlComponent.numPointsRange.min"
+        [max]="WorleyNoiseControlComponent.numPointsRange.max">
+    </div>
+  </div>
+  <div class="card-control">
+    <label class="card-control-label" for="worley-noise-point-gen-algorithm">Point Generation Algorithm</label>
+    <div class="card-control-input-array">
+      <select class="card-control-input expand" type="number" id="worley-noise-point-gen-algorithm"
+        [(ngModel)]="node.pointGenAlgorithm" (change)="onChange()">
+        @for (entry of getWorleyPointGenerationAlgorithmEntries(); track $index) {
+          <option [ngValue]="entry.value">{{entry.name}}</option>
+        }
+      </select>
+    </div>
+  </div>
+  <div class="card-control">
+    <label class="card-control-label" for="worley-noise-point-selection-criteria">Point Selection Criteria</label>
+    <div class="card-control-input-array">
+      <select class="card-control-input expand" type="number" id="worley-noise-point-selection-criteria"
+        [(ngModel)]="node.pointSelectionCriteria" (change)="onChange()">
+        @for (entry of getWorleyPointSelectionCriteriaEntries(); track $index) {
+          <option [ngValue]="entry.value">{{entry.name}}</option>
+        }
+      </select>
+    </div>
+  </div>
+</div>

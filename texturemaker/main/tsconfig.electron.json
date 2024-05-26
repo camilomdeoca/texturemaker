@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "outDir": "../../dist/electron",
+    "sourceMap": true,
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "target": "ES2022",
+    "declaration": true,
+    "lib": ["ESNext", "DOM"]
+  }
+}

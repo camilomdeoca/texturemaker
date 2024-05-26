@@ -1,0 +1,71 @@
+<div class="card-controls">
+  <div class="card-control">
+    <label class="card-control-label" for="perlin-noise-seed">Seed</label>
+    <div class="card-control-input-array">
+      <input class="card-control-input expand" type="text" id="perlin-noise-seed" [(ngModel)]="node.seed"
+        (change)="onChange()">
+    </div>
+  </div>
+  <div class="card-control">
+    <label class="card-control-label" for="perlin-noise-starting-octave">Starting octave</label>
+    <div class="card-control-input-array">
+      <input class="card-control-input expand" type="number" id="perlin-noise-starting-octave"
+        [(ngModel)]="node.startingOctaveIndex" (change)="onChange()" [min]="PerlinNoiseControlComponent.minStartOctave"
+        [max]="PerlinNoiseControlComponent.maxStartOctave">
+    </div>
+  </div>
+  <div class="card-controls-h-array">
+    <div class="card-control expand">
+      <label class="card-control-label" for="perlin-noise-scale-x">Scale X</label>
+      <div class="card-control-input-array">
+        <input class="card-control-input expand" type="number" id="perlin-noise-scale-x"
+          [(ngModel)]="node.scale.x" (change)="onChange()" [min]="PerlinNoiseControlComponent.minScale"
+          [max]="PerlinNoiseControlComponent.maxScale" step="1">
+      </div>
+    </div>
+    <div class="card-control expand">
+      <label class="card-control-label" for="perlin-noise-scale-y">Scale Y</label>
+      <div class="card-control-input-array">
+        <input class="card-control-input expand" type="number" id="perlin-noise-scale-y"
+          [(ngModel)]="node.scale.y" (change)="onChange()" [min]="PerlinNoiseControlComponent.minScale"
+          [max]="PerlinNoiseControlComponent.maxScale" step="1">
+      </div>
+    </div>
+  </div>
+  <div class="card-control">
+    <label class="card-control-label" for="perlin-noise-number-of-octaves">Number of octaves</label>
+    <div class="card-control-input-array">
+      <input class="card-control-input expand" type="number" id="perlin-noise-number-of-octaves"
+        [(ngModel)]="octavesCount" (change)="onChange()" [min]="PerlinNoiseControlComponent.minOctavesCount"
+        [max]="PerlinNoiseControlComponent.maxOctavesCount" step="1">
+    </div>
+  </div>
+  <div class="card-control">
+    <label class="card-control-label" for="perlin-noise-weight-relation">Weights relation</label>
+    <div class="card-control-input-array">
+      <input class="card-control-input expand" type="number" id="perlin-noise-weight-relation"
+        [(ngModel)]="this.weightsRelation" (change)="onChange()" [min]="PerlinNoiseControlComponent.minWeightsRelation"
+        [max]="PerlinNoiseControlComponent.maxWeightsRelation" step="0.01" [disabled]="!useWeightsRelation">
+      <input class="card-control-input togglebutto togglebutton" type="checkbox"
+        id="perlin-noise-use-weight-relation" [(ngModel)]="useWeightsRelation" (change)="onChange()">
+    </div>
+  </div>
+  <label class="card-control-label">
+    Weights
+  </label>
+  <div class="card-controls-h-array">
+    @for (octave of node.octavesWeights; track $index) {
+      <div class="card-control">
+        <div class="card-control-input-array">
+          <input class="card-control-input" type="range" orient="vertical" [(ngModel)]="octavesWeights[$index]"
+            (change)="onChange()" min="0" step="0.01" max="1" [disabled]="useWeightsRelation">
+        </div>
+        <div class="card-control-input-array">
+          <input class="card-control-input card-control-input-perlin-octave-weight" type="number"
+            [(ngModel)]="octavesWeights[$index]" (change)="onChange()" min="0" step="0.01" max="1"
+            [disabled]="useWeightsRelation">
+        </div>
+      </div>
+    }
+  </div>
+</div>

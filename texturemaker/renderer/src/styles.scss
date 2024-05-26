@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+
+$fg-color: #dddddd;
+$fg-color-disabled: #484848;
+$bg-color: #252525;
+$bg-hole-color: #181818;
+$border-color: #606060;
+$border-color-disabled: #383838;
+$shadow-color: #202020;
+$bg-bg-color: #303030;
+$accent-color: #305080;
+
+$input-color: #eeaa33;
+$output-color: #55aa22;
+
+html {
+  font-family: Arial, Helvetica, sans-serif;
+  background: $bg-bg-color;
+  color: $fg-color;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+

@@ -1,0 +1,23 @@
+<div
+  class="edit-area"
+  (mousemove)="onMouseMove($event)"
+  (mouseup)="cancelStartedConnection()"
+  (mouseleave)="cancelStartedConnection()"
+>
+  @for (node of nodes; track $index) {
+    <app-card
+      #card
+      [cardType]="node.type"
+      [startConnectionCallback]="onStartConnection"
+      [endConnectionCallback]="onEndConnection"
+      [updateChildrenOfCallback]="updateChildrenOf"></app-card>
+  }
+  @for (connection of connections; track $index) {
+    <app-cards-connection
+      [from]="connection.from.card.getOutputPos(connection.from.output)"
+      [to]="connection.to.card.getInputPos(connection.to.input)"></app-cards-connection>
+  }
+  @if (startedConnection !== undefined) {
+    <app-cards-connection [from]="mousePosStart" [to]="mousePos"></app-cards-connection>
+  }
+</div>

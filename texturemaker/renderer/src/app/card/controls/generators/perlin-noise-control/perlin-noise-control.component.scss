@@ -1,0 +1,10 @@
+@use '../../../card.component';
+
+input.card-control-input-perlin-octave-weight[type=number] {
+  width: 2rem;
+  font-size: 0.65rem;
+}
+
+input[type=number].card-control-input-perlin-octave-weight::-webkit-inner-spin-button {
+  appearance: none;
+}

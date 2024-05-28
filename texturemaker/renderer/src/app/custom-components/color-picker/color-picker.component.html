@@ -1,0 +1,24 @@
+<div class="color-picker-preview" style="background: {{color[0] === '#' ? color : '#' + color}};" (click)="openPicker()">
+</div>
+@if (showPicker) {
+  <div class="color-picker-page-overlay" (click)="closePicker()"></div> <!--For closing picker-->
+  <div class="color-picker-container">
+    <p class="color-picker-title">Color Picker</p>
+    <!-- Here would be a canvas where the color would be picked with the mouse -->
+    <!-- Here a slider for Hue with background of the color resulting of that hue change -->
+    <!-- Here a slider for Alpha with background of grey and white squares with overlay of the color with that alpha -->
+    <div class="card-control">
+      <div class="card-controls-h-array">
+        <label class="card-control-label" for="color-picker-hex-color-text-input">Color</label>
+        <input
+          class="card-control-input expand"
+          type="text"
+          [(ngModel)]="color"
+          (change)="onChange(color)"
+          (blur)="onTouch()"
+          id="color-picker-hex-color-text-input">
+        <div class="card-control-input color-picker-preview" style="background: {{color[0] === '#' ? color : '#' + color}};"></div>
+      </div>
+    </div>
+  </div>
+}

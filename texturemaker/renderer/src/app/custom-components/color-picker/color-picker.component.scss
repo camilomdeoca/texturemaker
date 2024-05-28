@@ -1,0 +1,39 @@
+@use '../../../styles' as *;
+@use '../../card/card.component';
+
+.color-picker-title {
+  font-size: 0.85rem;
+  padding: 0;
+  margin: 0 0 0.5rem 0;
+  text-align: center;
+}
+
+.color-picker-preview {
+  width: 2rem;
+  height: 1rem;
+  //outline: $border-color solid 0.1rem;
+  border-radius: 0.25rem;
+  padding: 1px 2px;
+  margin: 0.15rem;
+  box-sizing: content-box;
+}
+
+.color-picker-page-overlay {
+  // How can i do this better
+  position: fixed;
+  width: 300vh;
+  height: 300vw;
+  overflow: hidden;
+  content: ' ';
+  background: #00000040;
+  transform: translate(-50%, -50%);
+}
+
+.color-picker-container {
+  padding: 0.5rem;
+  background: $bg-color;
+  border-radius: $border-radius;
+  box-shadow: 0.3rem 0.3rem 0.3rem 0 $shadow-color;
+  position: absolute;
+  z-index: 11;
+}

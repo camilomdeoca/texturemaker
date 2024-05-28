@@ -46,7 +46,7 @@
       <input class="card-control-input expand" type="number" id="perlin-noise-weight-relation"
         [(ngModel)]="this.weightsRelation" (change)="onChange()" [min]="PerlinNoiseControlComponent.minWeightsRelation"
         [max]="PerlinNoiseControlComponent.maxWeightsRelation" step="0.01" [disabled]="!useWeightsRelation">
-      <input class="card-control-input togglebutto togglebutton" type="checkbox"
+      <input class="card-control-input togglebutton" type="checkbox"
         id="perlin-noise-use-weight-relation" [(ngModel)]="useWeightsRelation" (change)="onChange()">
     </div>
   </div>

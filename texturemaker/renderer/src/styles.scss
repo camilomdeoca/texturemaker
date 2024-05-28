@@ -4,11 +4,16 @@ $fg-color: #dddddd;
 $fg-color-disabled: #484848;
 $bg-color: #252525;
 $bg-hole-color: #181818;
+$bg-hole-hover-color: #323232;
 $border-color: #606060;
 $border-color-disabled: #383838;
 $shadow-color: #202020;
 $bg-bg-color: #303030;
 $accent-color: #305080;
+
+$border-radius: 0.25rem;
+
+$bg-warning-color: #501818;
 
 $input-color: #eeaa33;
 $output-color: #55aa22;
@@ -24,5 +29,95 @@ body {
   height: 100vh;
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 0.2rem;
+  background: $bg-hole-color;
+}
+
+/* For WebKit-based browsers */
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  width: 0.5rem;
+  height: 0.5rem;
+  border: 0.1rem solid $border-color;
+  background: $bg-color;
+}
+
+input[type='range'][disabled], input[type='range'][disabled]::-webkit-slider-thumb {
+  border-color: $border-color-disabled;
+}
+
+input[type='number'][disabled] {
+  color: $fg-color-disabled;
+}
+
+input[type='range']::-webkit-slider-runnable-track  {
+  -webkit-appearance: none;
+  background: transparent;
+}
+
+input[type='range'][orient='vertical'] {
+  writing-mode: vertical-lr;
+  direction: rtl;
+  width: 0.2rem;
+  height: 5rem;
+  margin: 0.15rem auto;
+}
+
+input[type='number'], input[type='text'], button, select {
+  margin: 0.15rem;
+  color-scheme: dark;
+  border-radius: 0.25rem;
+  //border: 0.1rem solid $border-color;
+  border: 0;
+  height: 1rem;
+  background: $bg-hole-color;
+  color: $fg-color;
+
+  &:focus {
+    outline: $border-color solid 0.1rem;
+  }
+}
+
+button {
+  padding: 1px 2px;
+  box-sizing: content-box;
+}
+
+button:hover {
+  background: $bg-hole-hover-color;
+}
+
+input[type='checkbox'] {
+  appearance: none;
+  width: 2rem;
+  height: 1rem;
+  background: $bg-hole-color;
+  border-radius: 0.25rem;
+  transition: all 0.15s;
+}
+
+input[type='checkbox']::after {
+  content: "";
+  position: absolute;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 0.25rem;
+  background: $bg-color;
+  border: 0.1rem solid $border-color;
+  transition: all 0.15s;
+}
+
+input[type='checkbox']:checked {
+  background: $accent-color;
+  //outline: 0.1rem solid $border-color;
+}
+
+input[type='checkbox']:checked:after {
+  transform: translate(1rem);
+}

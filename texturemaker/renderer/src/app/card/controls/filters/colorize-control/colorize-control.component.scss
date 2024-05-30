@@ -68,6 +68,7 @@
   width: $width;
   //z-index: -1;
   transform: translateY(-50%);
+  outline: 0.05rem solid $border-color;
 }
 
 .colorize-control-points-column {

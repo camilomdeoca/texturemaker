@@ -1,0 +1,5 @@
+<div class="menu-container" style="translate: {{position.x}}px {{position.y}}px;">
+  @for(type of CardTypeList; track $index) {
+    <div class="menu-option" (mousedown)="onCardTypeSelected(type)">{{cardTypeToName(type)}}</div>
+  }
+</div>

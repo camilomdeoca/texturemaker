@@ -3,6 +3,7 @@
 $fg-color: #dddddd;
 $fg-color-disabled: #484848;
 $bg-color: #252525;
+$bg-hover-color: #404040;
 $bg-hole-color: #181818;
 $bg-hole-hover-color: #323232;
 $bg-hole-active-color: #0a0a0a;
@@ -11,6 +12,8 @@ $border-color-disabled: #383838;
 $shadow-color: #202020;
 $bg-bg-color: #303030;
 $accent-color: #305080;
+
+$shadow: 0.3rem 0.3rem 0.3rem 0 $shadow-color;
 
 $border-radius: 0.25rem;
 

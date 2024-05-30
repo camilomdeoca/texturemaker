@@ -1,0 +1,22 @@
+@use '../../../styles' as *;
+
+.menu-container {
+  position: fixed;
+  background: $bg-color;
+  box-shadow: $shadow;
+  border: 0.1rem solid $border-color;
+  border-radius: $border-radius;
+}
+
+.menu-option {
+  color: $fg-color;
+  padding: 0.5rem;
+  margin: 0;
+  &:hover {
+    background: $bg-hover-color;
+  }
+  & + & {
+    border-top: 0.1rem solid $border-color;
+  }
+}
+

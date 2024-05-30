@@ -4,6 +4,7 @@ import { Vector2 } from 'vectors-typescript';
 import { CardsConnectionComponent } from '../cards-connection/cards-connection.component';
 import { CardComponent } from '../card/card.component'
 import { CardType } from '../card/card-type.enum';
+import { AddCardMenuComponent } from '../menus/add-card-menu/add-card-menu.component';
 
 interface CardsConnection {
   from: {
@@ -19,7 +20,7 @@ interface CardsConnection {
 @Component({
   selector: 'app-edit-area',
   standalone: true,
-  imports: [CardComponent, CardsConnectionComponent, FormsModule],
+  imports: [CardComponent, CardsConnectionComponent, AddCardMenuComponent, FormsModule],
   templateUrl: './edit-area.component.html',
   styleUrl: './edit-area.component.scss'
 })
@@ -28,38 +29,21 @@ export class EditAreaComponent {
     id: string,
     type: CardType,
     position: Vector2,
-  }[] = [
-    {
-      id: "a",
-      type: CardType.PerlinNoise,
-      position: new Vector2(0, 0),
-    },
-    {
-      id: "b",
-      type: CardType.ColorCorrection,
-      position: new Vector2(0, 0),
-    },
-    {
-      id: "c",
-      type: CardType.WorleyNoise,
-      position: new Vector2(0, 0),
-    },
-    {
-      id: "d",
-      type: CardType.Colorize,
-      position: new Vector2(0, 0),
-    },
-    {
-      id: "e",
-      type: CardType.Warp,
-      position: new Vector2(0, 0),
-    },
-  ];
+  }[] = [];
 
+  nextValidIdInt: number = 1;
+  scale: number = 1;
   connections: CardsConnection[] = Array();
   startedConnection: { card: CardComponent, output: string } | undefined = undefined;
   mousePosStart: Vector2 = new Vector2(0, 0);
   mousePos: Vector2 = new Vector2(0, 0);
+  addCardMenuData: {
+    show: boolean,
+    position: Vector2 | undefined
+  } = {
+    show: false,
+    position: undefined,
+  };
 
   CardType = CardType; // Expose enum to template
   Vector2 = Vector2;
@@ -109,6 +93,29 @@ export class EditAreaComponent {
     if (this.startedConnection !== undefined) {
       this.mousePos = new Vector2(event.pageX, event.pageY);
     }
+  }
+
+  onMouseDown(event: MouseEvent): void {
+    if (this.addCardMenuData.show) {
+      this.addCardMenuData.show = false;
+    } else if (event.button == 2) {
+      this.addCardMenuData.position = new Vector2(
+        event.offsetX,
+        event.offsetY
+      );
+      console.log(this.addCardMenuData.position);
+      this.addCardMenuData.show = true;
+    }
+  }
+
+  onAddCardMenuSelect = (type: CardType): void => {
+    console.log("added");
+    this.nodes.push({
+      id: this.nextValidIdInt.toString(36),
+      type: type,
+      position: new Vector2(0, 0),
+    });
+    this.nextValidIdInt++;
   }
 
   // Gets executed with mouse button up on an input

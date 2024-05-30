@@ -7,6 +7,14 @@ export enum CardType {
   Warp,
 }
 
+export const CardTypeList = [
+  CardType.PerlinNoise,
+  CardType.WorleyNoise,
+  CardType.ColorCorrection,
+  CardType.Colorize,
+  CardType.Warp,
+];
+
 export const cardTypeToName = (type: CardType): string => {
   switch (type) {
     case CardType.PerlinNoise:

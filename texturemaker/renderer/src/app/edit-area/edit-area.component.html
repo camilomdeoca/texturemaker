@@ -3,6 +3,7 @@
   (mousemove)="onMouseMove($event)"
   (mouseup)="cancelStartedConnection()"
   (mouseleave)="cancelStartedConnection()"
+  (mousedown)="onMouseDown($event)"
 >
   @for (node of nodes; track node.id) {
     <app-card
@@ -13,12 +14,18 @@
       [updateChildrenOfCallback]="updateChildrenOf"
       [activeCardChangeCallback]="sendCardToTop"></app-card>
   }
+
   @for (connection of connections; track connection) {
     <app-cards-connection
       [from]="connection.from.card.getOutputPos(connection.from.output)"
       [to]="connection.to.card.getInputPos(connection.to.input)"></app-cards-connection>
   }
+
   @if (startedConnection !== undefined) {
     <app-cards-connection [from]="mousePosStart" [to]="mousePos"></app-cards-connection>
+  }
+
+  @if (addCardMenuData.show) {
+    <app-add-card-menu [position]="addCardMenuData.position!" [cardTypeSelectedCallback]="onAddCardMenuSelect"></app-add-card-menu>
   }
 </div>

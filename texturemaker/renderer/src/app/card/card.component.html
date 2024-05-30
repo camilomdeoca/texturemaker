@@ -21,6 +21,9 @@
         @case (CardType.ColorCorrection) {
           <app-color-correction-control [node]="node" [changeCallback]="onChange"></app-color-correction-control>
         }
+        @case (CardType.Colorize) {
+        <app-colorize-control [node]="node" [changeCallback]="onChange"></app-colorize-control>
+        }
       }
       <canvas class="card-texture-preview" #texturePreviewCanvas [width]="textureSize" [height]="textureSize"></canvas>
     </div>

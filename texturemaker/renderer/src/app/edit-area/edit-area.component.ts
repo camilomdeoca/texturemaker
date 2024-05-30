@@ -44,6 +44,10 @@ export class EditAreaComponent {
       type: CardType.WorleyNoise,
       position: new Vector2(0, 0),
     },
+    {
+      type: CardType.Colorize,
+      position: new Vector2(0, 0),
+    },
   ];
 
   connections: CardsConnection[] = Array();

@@ -1,0 +1,33 @@
+<div class="card-columns card-hole">
+  <canvas #colorMappingBar class="colorize-color-mapping-bar" (click)="onColorMappingBarClick($event)"></canvas>
+  <div class="colorize-control-points-column">
+    @for (controlPoint of node.colors; track $index) {
+      <div class="colorize-control-point"
+        style="transform: translateY({{20 - controlPoint.lightness * 20}}rem);">
+        <div class="card-controls-h-array">
+          <div class="card-control" (mousedown)="startControlPointDrag($event, $index)" (mouseup)="endControlPointDrag($event)">
+            <img class="colorize-control-point-drag-handle" src="assets/drag_handle.svg" draggable="false">
+          </div>
+          <div class="card-control">
+            <app-color-picker class="colorize-color-picker" [(ngModel)]="colors[$index]" (change)="onColorPickerChange()"></app-color-picker>
+          </div>
+          <div class="card-control expand">
+            <div class="card-control-input-array">
+              <div class="card-control-input-array">
+                <input class="card-control-input expand" type="number"
+                  [(ngModel)]="controlPoint.lightness" (change)="onControlPointLightnessChange()" [min]="0" [max]="1"
+                  step="0.05">
+                <button
+                  [disabled]="node.colors.length <= 1"
+                  class="card-control-input remove-button"
+                  (click)="removeControlPointOfLightness(controlPoint.lightness)">
+                  <img class="remove-icon" src="assets/cross.svg">
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

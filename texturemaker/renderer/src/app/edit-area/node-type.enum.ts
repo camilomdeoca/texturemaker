@@ -2,5 +2,6 @@ export enum NodeType {
   PerlinNoise,
   WorleyNoise,
 
-  ColorCorrection
+  ColorCorrection,
+  Colorize
 }

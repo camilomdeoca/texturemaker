@@ -2,7 +2,7 @@ import { CdkDrag, CdkDragHandle, CdkDragMove } from '@angular/cdk/drag-drop';
 import { AfterViewInit, Component, ElementRef, Input, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { CardType, cardTypeToName } from './card-type.enum';
 import { Vector2 } from 'vectors-typescript';
-import { ColorCorrectionNode, INode, PerlinNoiseNode, WorleyNoiseNode } from 'texturemaker-library';
+import { ColorCorrectionNode, ColorizeNode, INode, PerlinNoiseNode, WorleyNoiseNode } from 'texturemaker-library';
 import { CardInputDirective } from '../card/input/card-input.directive';
 import { CardOutputDirective } from '../card/output/card-output.directive';
 import { PerlinNoiseControlComponent } from './controls/generators/perlin-noise-control/perlin-noise-control.component';
@@ -10,6 +10,7 @@ import { ColorCorrectionControlComponent } from './controls/filters/color-correc
 import { FormsModule } from '@angular/forms';
 import { drawNodeToCanvas } from '../card/utils';
 import { WorleyNoiseControlComponent } from './controls/generators/worley-noise-control/worley-noise-control.component';
+import { ColorizeControlComponent } from './controls/filters/colorize-control/colorize-control.component';
 
 @Component({
   selector: 'app-card',
@@ -22,6 +23,7 @@ import { WorleyNoiseControlComponent } from './controls/generators/worley-noise-
     PerlinNoiseControlComponent,
     WorleyNoiseControlComponent,
     ColorCorrectionControlComponent,
+    ColorizeControlComponent,
     FormsModule
   ],
   templateUrl: './card.component.html',
@@ -107,6 +109,9 @@ export class CardComponent implements OnInit, AfterViewInit {
         break;
       case CardType.ColorCorrection:
         node = new ColorCorrectionNode();
+        break;
+      case CardType.Colorize:
+        node = new ColorizeNode();
         break;
       default:
         throw new Error("Invalid card type");

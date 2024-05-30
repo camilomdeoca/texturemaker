@@ -5,6 +5,7 @@ $fg-color-disabled: #484848;
 $bg-color: #252525;
 $bg-hole-color: #181818;
 $bg-hole-hover-color: #323232;
+$bg-hole-active-color: #0a0a0a;
 $border-color: #606060;
 $border-color-disabled: #383838;
 $shadow-color: #202020;
@@ -87,10 +88,18 @@ input[type='number'], input[type='text'], button, select {
 button {
   padding: 1px 2px;
   box-sizing: content-box;
-}
 
-button:hover {
-  background: $bg-hole-hover-color;
+  &:hover {
+    background: $bg-hole-hover-color;
+  }
+
+  &:active {
+    background: $bg-hole-active-color;
+  }
+
+  &:disabled {
+    background: $bg-hole-hover-color;
+  }
 }
 
 input[type='checkbox'] {

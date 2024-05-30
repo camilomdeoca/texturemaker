@@ -1,0 +1,75 @@
+@use '../../../../../styles' as *;
+@use '../../../card.component';
+
+.remove-icon {
+  height: 50%;
+  width: auto;
+
+  button:disabled > & {
+    filter: invert(100%);
+  }
+}
+
+.remove-button {
+  padding: 1px;
+  width: 1rem;
+  height: 1rem;
+
+  &:hover {
+    background: $bg-warning-color;
+  }
+
+  &:active {
+    background: $bg-hole-active-color;
+  }
+
+  &:disabled {
+    background: $bg-hole-hover-color;
+  }
+}
+
+.colorize-control-point-drag-handle {
+  width: 1rem;
+  height: 1rem;
+  margin: auto 0;
+  user-select: none;
+}
+
+.colorize-color-picker {
+  width: 2rem;
+  height: 1rem;
+  padding: 1px 2px;
+  margin: 0.15rem 0 0.15rem 0.15rem;
+  box-sizing: content-box;
+}
+
+.colorize-color-mapping-bar {
+  margin: (0.25rem + 0.1rem + 0.5rem) 0.25rem;
+  width: 1rem;
+  height: 20rem;
+  background: red;
+}
+
+.colorize-control-point {
+  position: absolute;
+  background: $bg-color;
+  border-radius: 0.25rem;
+  padding: 0.15rem;
+}
+
+.colorize-control-point:after {
+  $width: 1.5rem;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -$width;
+  background: $fg-color;
+  height: 0.1rem;
+  width: $width;
+  //z-index: -1;
+  transform: translateY(-50%);
+}
+
+.colorize-control-points-column {
+  width: 9.5rem;
+}

@@ -19,6 +19,12 @@ $bg-warning-color: #501818;
 $input-color: #eeaa33;
 $output-color: #55aa22;
 
+$tooltip-depth: 100;
+$pop-up-component-overlay-depth: 80; // used for color picker bg overlay
+$pop-up-component-depth: 90; // used for color picker
+$cards-connection-depth: 50;
+// 10-20 depth is used for cards ordering
+
 html {
   font-family: Arial, Helvetica, sans-serif;
   background: $bg-bg-color;
@@ -31,6 +37,28 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
+}
+
+.tooltip {
+  position: absolute;
+  visibility: hidden;
+  background: $bg-color;
+  color: $fg-color;
+  border-radius: $border-radius;
+  z-index: $tooltip-depth;
+  padding: 0.25rem;
+  opacity: 0;
+  transition: 0.15s;
+  top: 100%;
+  right: 100%;
+  box-shadow: 0.3rem 0.3rem 0.3rem 0 $shadow-color;
+  border: 0.1rem solid $border-color;
+
+  *:hover > & {
+    visibility: visible;
+    opacity: 1;
+    transition: 0.15s;
+  }
 }
 
 input[type='range'] {

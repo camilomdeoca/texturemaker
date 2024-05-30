@@ -7,7 +7,9 @@
           #input
           class="card-input"
           [appCardInput]="inputName"
-          (mouseup)="onMouseUpOnInput(inputName)"></div>
+          (mouseup)="onMouseUpOnInput(inputName)">
+          <span class="tooltip">{{inputName}}</span>
+        </div>
       }
     </div>
     <div class="expand">
@@ -22,13 +24,17 @@
           <app-color-correction-control [node]="node" [changeCallback]="onChange"></app-color-correction-control>
         }
         @case (CardType.Colorize) {
-        <app-colorize-control [node]="node" [changeCallback]="onChange"></app-colorize-control>
+          <app-colorize-control [node]="node" [changeCallback]="onChange"></app-colorize-control>
+        }
+        @case (CardType.Warp) {
+          <app-warp-control [node]="node" [changeCallback]="onChange"></app-warp-control>
         }
       }
       <canvas class="card-texture-preview" #texturePreviewCanvas [width]="textureSize" [height]="textureSize"></canvas>
     </div>
     <div class="card-outputs">
-      <div class="card-output" appCardOutput="output" (mousedown)="onMouseDownOnOutput('output')"></div>
+      <div class="card-output" appCardOutput="output" (mousedown)="onMouseDownOnOutput('output')">
+      </div>
     </div>
   </div>
 </div>

@@ -2,7 +2,7 @@ import { CdkDrag, CdkDragHandle, CdkDragMove } from '@angular/cdk/drag-drop';
 import { AfterViewInit, Component, ElementRef, Input, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { CardType, cardTypeToName } from './card-type.enum';
 import { Vector2 } from 'vectors-typescript';
-import { ColorCorrectionNode, ColorizeNode, INode, PerlinNoiseNode, WorleyNoiseNode } from 'texturemaker-library';
+import { ColorCorrectionNode, ColorizeNode, INode, PerlinNoiseNode, WarpNode, WorleyNoiseNode } from 'texturemaker-library';
 import { CardInputDirective } from '../card/input/card-input.directive';
 import { CardOutputDirective } from '../card/output/card-output.directive';
 import { PerlinNoiseControlComponent } from './controls/generators/perlin-noise-control/perlin-noise-control.component';
@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { drawNodeToCanvas } from '../card/utils';
 import { WorleyNoiseControlComponent } from './controls/generators/worley-noise-control/worley-noise-control.component';
 import { ColorizeControlComponent } from './controls/filters/colorize-control/colorize-control.component';
+import { WarpControlComponent } from './controls/filters/warp-control/warp-control.component';
 
 @Component({
   selector: 'app-card',
@@ -24,6 +25,7 @@ import { ColorizeControlComponent } from './controls/filters/colorize-control/co
     WorleyNoiseControlComponent,
     ColorCorrectionControlComponent,
     ColorizeControlComponent,
+    WarpControlComponent,
     FormsModule
   ],
   templateUrl: './card.component.html',
@@ -113,6 +115,9 @@ export class CardComponent implements OnInit, AfterViewInit {
       case CardType.Colorize:
         node = new ColorizeNode();
         break;
+      case CardType.Warp:
+        node = new WarpNode();
+        break;
       default:
         throw new Error("Invalid card type");
     }
@@ -131,7 +136,7 @@ export class CardComponent implements OnInit, AfterViewInit {
     this.endConnectionCallback(this, name);
   }
 
-  textureSize: number = 128;
+  textureSize: number = 256;
 
   @ViewChild('texturePreviewCanvas', { static: false })
   private texturePreviewCanvas: ElementRef<HTMLCanvasElement> | null = null;

@@ -3,7 +3,8 @@ export enum CardType {
   WorleyNoise,
 
   ColorCorrection,
-  Colorize
+  Colorize,
+  Warp,
 }
 
 export const cardTypeToName = (type: CardType): string => {
@@ -16,6 +17,8 @@ export const cardTypeToName = (type: CardType): string => {
       return "Color Correction";
     case CardType.Colorize:
       return "Colorize";
+    case CardType.Warp:
+      return "Warp";
     default:
       throw new Error("Invalid card type");
   }

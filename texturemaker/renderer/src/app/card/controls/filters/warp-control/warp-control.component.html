@@ -1,0 +1,9 @@
+<div class="card-controls">
+  <div class="card-control">
+    <label class="card-control-label" for="warp-strength">Strength</label>
+    <div class="card-control-input-array">
+      <input class="card-control-input expand" type="number" min="0" max="5" step="0.1" id="warp-strength"
+        [(ngModel)]="node.strength" (change)="onChange()">
+    </div>
+  </div>
+</div>

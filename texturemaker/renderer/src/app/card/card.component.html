@@ -1,4 +1,4 @@
-<div class="card" cdkDrag (cdkDragMoved)="onDragMove($event)">
+<div class="card" cdkDrag (cdkDragMoved)="onDragMove($event)" (mousedown)="onMouseDown()">
   <h2 class="card-title" cdkDragHandle>{{cardName}}</h2>
   <div class="card-columns">
     <div class="card-inputs">

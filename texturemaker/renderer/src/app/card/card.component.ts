@@ -36,6 +36,8 @@ export class CardComponent implements OnInit, AfterViewInit {
   startConnectionCallback!: (card: CardComponent, output: string) => void;
   @Input({ required: true })
   endConnectionCallback!: (card: CardComponent, input: string) => void;
+  @Input({ required: true })
+  activeCardChangeCallback!: (card: CardComponent) => void;
 
   @Input()
   updateChildrenOfCallback: ((card: CardComponent) => void) | undefined = undefined;
@@ -134,6 +136,10 @@ export class CardComponent implements OnInit, AfterViewInit {
 
   onMouseUpOnInput(name: string): void {
     this.endConnectionCallback(this, name);
+  }
+
+  onMouseDown(): void {
+    this.activeCardChangeCallback(this);
   }
 
   textureSize: number = 256;

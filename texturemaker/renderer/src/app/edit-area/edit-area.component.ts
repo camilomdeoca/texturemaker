@@ -25,26 +25,32 @@ interface CardsConnection {
 })
 export class EditAreaComponent {
   nodes: {
+    id: string,
     type: CardType,
     position: Vector2,
   }[] = [
     {
+      id: "a",
       type: CardType.PerlinNoise,
       position: new Vector2(0, 0),
     },
     {
+      id: "b",
       type: CardType.ColorCorrection,
       position: new Vector2(0, 0),
     },
     {
+      id: "c",
       type: CardType.WorleyNoise,
       position: new Vector2(0, 0),
     },
     {
+      id: "d",
       type: CardType.Colorize,
       position: new Vector2(0, 0),
     },
     {
+      id: "e",
       type: CardType.Warp,
       position: new Vector2(0, 0),
     },
@@ -140,5 +146,14 @@ export class EditAreaComponent {
       if (connection.from.card === card)
         connection.to.card.onChange();
     }
+  }
+
+  sendCardToTop = (card: CardComponent): void => {
+    let index = 0;
+    for (; index < this.cardComponents.length && this.cardComponents.get(index) !== card; index++);
+
+    const node = this.nodes.splice(index, 1)[0];
+    this.nodes.push(node);
+    console.log(this.nodes);
   }
 }

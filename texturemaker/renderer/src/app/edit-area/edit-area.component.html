@@ -4,15 +4,16 @@
   (mouseup)="cancelStartedConnection()"
   (mouseleave)="cancelStartedConnection()"
 >
-  @for (node of nodes; track $index) {
+  @for (node of nodes; track node.id) {
     <app-card
       #card
       [cardType]="node.type"
       [startConnectionCallback]="onStartConnection"
       [endConnectionCallback]="onEndConnection"
-      [updateChildrenOfCallback]="updateChildrenOf"></app-card>
+      [updateChildrenOfCallback]="updateChildrenOf"
+      [activeCardChangeCallback]="sendCardToTop"></app-card>
   }
-  @for (connection of connections; track $index) {
+  @for (connection of connections; track connection) {
     <app-cards-connection
       [from]="connection.from.card.getOutputPos(connection.from.output)"
       [to]="connection.to.card.getInputPos(connection.to.input)"></app-cards-connection>

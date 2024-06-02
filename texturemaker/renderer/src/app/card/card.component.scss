@@ -19,6 +19,10 @@
   font-size: 1rem;
 }
 
+.drag-handle {
+  cursor: move;
+}
+
 .card-control {
   display: flex;
   flex-direction: column;

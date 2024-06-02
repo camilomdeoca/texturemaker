@@ -1,4 +1,3 @@
-import { CdkDrag, CdkDragHandle, CdkDragMove } from '@angular/cdk/drag-drop';
 import { AfterViewInit, Component, ElementRef, Input, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { CardType, cardTypeToName } from './card-type.enum';
 import { Vector2 } from 'vectors-typescript';
@@ -17,8 +16,6 @@ import { WarpControlComponent } from './controls/filters/warp-control/warp-contr
   selector: 'app-card',
   standalone: true,
   imports: [
-    CdkDrag,
-    CdkDragHandle,
     CardInputDirective,
     CardOutputDirective,
     PerlinNoiseControlComponent,
@@ -41,6 +38,13 @@ export class CardComponent implements OnInit, AfterViewInit {
 
   @Input()
   updateChildrenOfCallback: ((card: CardComponent) => void) | undefined = undefined;
+
+  @Input()
+  position: Vector2 = new Vector2(0, 0);
+
+  @Input()
+  scale: number = 1; // used to change mouse coordinates from events, not scale anything here.
+                     // scaling is done at edit-area
 
   public console = console;
   public CardType = CardType;
@@ -126,10 +130,6 @@ export class CardComponent implements OnInit, AfterViewInit {
     this.node = node;
   }
 
-  onDragMove(_event: CdkDragMove): void {
-    // Just calling a function on move makes the connection move with the card
-  }
-
   onMouseDownOnOutput(name: string): void {
     this.startConnectionCallback(this, name);
   }
@@ -138,8 +138,9 @@ export class CardComponent implements OnInit, AfterViewInit {
     this.endConnectionCallback(this, name);
   }
 
-  onMouseDown(): void {
+  onMouseDown(event: MouseEvent): void {
     this.activeCardChangeCallback(this);
+    event.stopPropagation();
   }
 
   textureSize: number = 256;
@@ -153,6 +154,25 @@ export class CardComponent implements OnInit, AfterViewInit {
       if (this.updateChildrenOfCallback !== undefined)
         this.updateChildrenOfCallback(this);
     }
+  }
+
+  onDragHandleMouseDown(event: MouseEvent): void {
+    const startingPos = this.position;
+    const startingOffset: Vector2 = new Vector2(
+      event.pageX,
+      event.pageY
+    );
+    document.onmousemove = (event: MouseEvent): void => {
+      this.position = new Vector2(
+        (event.pageX - startingOffset.x) / this.scale + startingPos.x,
+        (event.pageY - startingOffset.y) / this.scale + startingPos.y
+      );
+    };
+    document.onmouseup = (_event: MouseEvent): void => {
+      document.onmousemove = null;
+      document.onmouseup = null;
+    }
+    event.stopPropagation();
   }
 
   ngAfterViewInit(): void {

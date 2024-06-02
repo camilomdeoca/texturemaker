@@ -1,10 +1,12 @@
-<div class="card" cdkDrag (cdkDragMoved)="onDragMove($event)" (mousedown)="onMouseDown()">
-  <h2 class="card-title" cdkDragHandle>{{cardName}}</h2>
+<div
+  class="card"
+  style="translate: {{position.x}}px {{position.y}}px;"
+  (mousedown)="onMouseDown($event)">
+  <h2 class="card-title drag-handle" (mousedown)="onDragHandleMouseDown($event)">{{cardName}}</h2>
   <div class="card-columns">
     <div class="card-inputs">
       @for (inputName of node.inputs.keys(); track $index) {
         <div
-          #input
           class="card-input"
           [appCardInput]="inputName"
           (mouseup)="onMouseUpOnInput(inputName)">

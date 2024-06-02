@@ -172,7 +172,6 @@ export class CardComponent implements OnInit, AfterViewInit {
       document.onmousemove = null;
       document.onmouseup = null;
     }
-    event.stopPropagation();
   }
 
   ngAfterViewInit(): void {

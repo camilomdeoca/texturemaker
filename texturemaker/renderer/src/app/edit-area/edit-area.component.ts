@@ -64,35 +64,20 @@ export class EditAreaComponent {
   constructor() { }
 
   connectCards(
-    from: {
-      card: CardComponent,
-      output: string
-    },
-    to: {
-      card: CardComponent,
-      input: string
-    }
+    from: { card: CardComponent, output: string },
+    to: { card: CardComponent, input: string }
   ) {
     this.connections.push({
-      from: {
-        card: from.card,
-        output: from.output
-      },
-      to: {
-        card: to.card,
-        input: to.input
-      }
+      from: { card: from.card, output: from.output },
+      to: { card: to.card, input: to.input }
     });
     to.card.node.inputs.set(to.input, from.card.node);
     to.card.onChange();
-    console.log(to.card.node);
   }
 
   onStartConnection = (card: CardComponent, output: string): void => {
-    console.log("Start connection from output", output);
     this.startedConnection = { card: card, output: output };
     this.mousePosStart = this.mousePos = card.getOutputPos(output);
-    console.log(this.mousePosStart);
   }
 
   onMouseMove = (event: MouseEvent): void => {
@@ -100,34 +85,30 @@ export class EditAreaComponent {
       this.mousePos = new Vector2(event.pageX, event.pageY);
     } else if (this.panningData.startMousePos !== undefined) {
       this.mousePos = new Vector2(event.pageX, event.pageY);
-      this.panningData.editAreaPosition = Vector2.add(
-        this.panningData.startEditAreaPosition,
-        Vector2.subtract(
-          this.mousePos,
-          this.panningData.startMousePos
-        )
+      // editArea position in screen space
+      this.panningData.editAreaPosition = new Vector2(
+        this.panningData.startEditAreaPosition.x + this.mousePos.x - this.panningData.startMousePos.x,
+        this.panningData.startEditAreaPosition.y + this.mousePos.y - this.panningData.startMousePos.y
       );
-      console.log(this.panningData.editAreaPosition);
     }
   }
 
   @ViewChild("editor", { static: true }) editor!: ElementRef<HTMLDivElement>;
   onMouseDown(event: MouseEvent): void {
-    console.log(event.pageX, event.pageY);
-    if (this.addCardMenuData.show) {
+    if (this.addCardMenuData.show) { // Close right click menu if open
       this.addCardMenuData.show = false;
-    } else if (event.button == 2) {
+    } else if (event.button == 2) { // Show right click menu
       const editorRect = this.editor.nativeElement.getBoundingClientRect();
       this.addCardMenuData.position = new Vector2(
         event.pageX - editorRect.x,
         event.pageY - editorRect.y
       );
       this.addCardMenuData.show = true;
-    } else if (event.button == 0) {
+    } else if (event.button == 0) { // start panning
       this.panningData.startMousePos = new Vector2(event.pageX, event.pageY);
       this.panningData.startEditAreaPosition = this.panningData.editAreaPosition;
-      console.log("pan");
     }
+    event.stopPropagation();
   }
 
   onMouseUp(_event: MouseEvent): void {
@@ -140,19 +121,18 @@ export class EditAreaComponent {
   onScroll(event: WheelEvent): void {
     this.mousePos = new Vector2(event.pageX, event.pageY);
     const editAreaRect = this.editArea.nativeElement.getBoundingClientRect();
-    const mousePosEditorAreaSpaceBefore = new Vector2(
+    const mousePosEditAreaSpaceBefore = new Vector2(
       (this.mousePos.x - editAreaRect.x)/this.scale,
       (this.mousePos.y - editAreaRect.y)/this.scale
     );
     this.scale -= 0.1*Math.sign(event.deltaY);
     this.scale = this.scale < 0.3 ? 0.3 : this.scale > 3 ? 3 : this.scale;
-    const mousePosEditorAreaSpaceAfter = new Vector2(
+    const mousePosEditAreaSpaceAfter = new Vector2(
       (this.mousePos.x - editAreaRect.x)/this.scale,
       (this.mousePos.y - editAreaRect.y)/this.scale
     );
-    const deltaPosPageSpace = Vector2.subtract(mousePosEditorAreaSpaceAfter, mousePosEditorAreaSpaceBefore).times(this.scale);
+    const deltaPosPageSpace = Vector2.subtract(mousePosEditAreaSpaceAfter, mousePosEditAreaSpaceBefore).times(this.scale);
     this.panningData.editAreaPosition = Vector2.add(this.panningData.editAreaPosition, deltaPosPageSpace);
-    console.log(this.panningData.editAreaPosition);
   }
 
   @ViewChild("editArea", { static: true }) editArea!: ElementRef<HTMLDivElement>;

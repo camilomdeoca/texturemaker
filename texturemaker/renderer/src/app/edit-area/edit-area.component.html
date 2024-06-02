@@ -1,20 +1,34 @@
 <div
-  class="edit-area"
+  class="editor"
+  #editor
   (mousemove)="onMouseMove($event)"
-  (mouseup)="cancelStartedConnection()"
-  (mouseleave)="cancelStartedConnection()"
+  (mouseup)="onMouseUp($event)"
+  (mouseleave)="onMouseUp($event)"
   (mousedown)="onMouseDown($event)"
+  (wheel)="onScroll($event)"
 >
-  @for (node of nodes; track node.id) {
-    <app-card
-      #card
-      [cardType]="node.type"
-      [startConnectionCallback]="onStartConnection"
-      [endConnectionCallback]="onEndConnection"
-      [updateChildrenOfCallback]="updateChildrenOf"
-      [activeCardChangeCallback]="sendCardToTop"></app-card>
-  }
-
+  <div
+    #editArea
+    class="edit-area"
+    style="
+    transform-origin: top left;
+      transform:
+        translate({{panningData.editAreaPosition.x}}px, {{panningData.editAreaPosition.y}}px)
+        scale({{scale}});
+    "
+  >
+    @for (node of nodes; track node.id) {
+      <app-card
+        #card
+        [cardType]="node.type"
+        [position]="node.position"
+        [scale]="scale"
+        [startConnectionCallback]="onStartConnection"
+        [endConnectionCallback]="onEndConnection"
+        [updateChildrenOfCallback]="updateChildrenOf"
+        [activeCardChangeCallback]="sendCardToTop"></app-card>
+    }
+  </div>
   @for (connection of connections; track connection) {
     <app-cards-connection
       [from]="connection.from.card.getOutputPos(connection.from.output)"

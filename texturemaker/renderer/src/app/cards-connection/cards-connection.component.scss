@@ -1,7 +1,9 @@
 @use '../../styles' as *;
 
 .cards-connection-arrow {
-  position: absolute;
+  position: fixed;
+  top: 0;
+  left: 0;
   color: $fg-color;
   pointer-events: none;
 }
